@@ -3,7 +3,6 @@
 
 import { useState } from 'react';
 import { auth } from '@/lib/firebase';
-// NEW: Import the password reset function
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 
 export default function LoginPage() {
@@ -15,29 +14,25 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-
     if (isSignUp) {
-      // Sign Up logic
       try {
         await createUserWithEmailAndPassword(auth, email, password);
         alert("Success! Your account has been created. Please sign in.");
         setIsSignUp(false);
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err) {
+        if (err instanceof Error) setError(err.message);
       }
     } else {
-      // Sign In logic
       try {
         await signInWithEmailAndPassword(auth, email, password);
         alert("Sign in successful! Redirecting to homepage...");
         window.location.href = '/';
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err) {
+        if (err instanceof Error) setError(err.message);
       }
     }
   };
 
-  // NEW: Function to handle password reset
   const handlePasswordReset = async () => {
     if (!email) {
       setError("Please enter your email address above to reset your password.");
@@ -47,8 +42,8 @@ export default function LoginPage() {
       await sendPasswordResetEmail(auth, email);
       alert("Password reset email sent! Please check your inbox.");
       setError('');
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      if (err instanceof Error) setError(err.message);
     }
   };
 
@@ -75,8 +70,6 @@ export default function LoginPage() {
               required className="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500" 
             />
           </div>
-
-          {/* NEW: Forgot Password link appears only on the Sign In form */}
           {!isSignUp && (
             <div className="text-right text-sm">
               <button type="button" onClick={handlePasswordReset} className="font-medium text-emerald-600 hover:underline">
@@ -84,13 +77,11 @@ export default function LoginPage() {
               </button>
             </div>
           )}
-
           {error && <p className="text-red-500 text-sm">{error}</p>}
           <button type="submit" className="w-full bg-gray-900 text-white font-bold py-2 px-4 rounded-md hover:bg-gray-700 transition-colors">
             {isSignUp ? 'Create Account' : 'Sign In'}
           </button>
         </form>
-
         <div className="text-center text-gray-600">
           <button onClick={() => setIsSignUp(!isSignUp)} className="font-medium text-emerald-600 hover:underline">
             {isSignUp ? 'Already have an account? Sign In' : "Don't have an account? Create one"}

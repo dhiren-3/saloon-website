@@ -1,14 +1,15 @@
 // file: src/app/gallery/page.tsx
+import Image from 'next/image';
 
 export default function GalleryPage() {
-  // We'll use placeholder images for now. Later, you can replace the links.
-  const imageUrls = [
-    "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=2070",
-    "https://images.unsplash.com/photo-1632345031435-8727f6897d53?q=80&w=1932",
-    "https://images.unsplash.com/photo-1599387737255-36a72149b502?q=80&w=2070",
-    "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=2070",
-    "https://images.unsplash.com/photo-1559599238-3087932314b8?q=80&w=2070",
-    "https://images.unsplash.com/photo-1600948836101-f9ffda59d250?q=80&w=2074",
+  // The fix is here: we explicitly define the type as string[]
+  const imageUrls: string[] = [
+    "/gallery1.jpeg",
+    "/gallery2.jpeg",
+    "/gallery3.jpeg",
+    "/gallery4.jpeg",
+    "/gallery5.jpeg",
+    "/gallery6.jpeg",
   ];
 
   return (
@@ -19,9 +20,11 @@ export default function GalleryPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {imageUrls.map((url, index) => (
             <div key={index} className="overflow-hidden rounded-lg shadow-lg">
-              <img
-                src={url}
-                alt={`Saloon gallery image ${index + 1}`}
+              <Image 
+                src={url} 
+                alt={`Saloon gallery image ${index + 1}`} 
+                width={500}
+                height={500}
                 className="w-full h-full object-cover aspect-square transition-transform duration-300 hover:scale-105"
               />
             </div>
