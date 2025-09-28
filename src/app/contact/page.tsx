@@ -16,7 +16,7 @@ export default function ContactPage() {
           <div className="space-y-6">
             <div>
               <h3 className="text-xl font-semibold text-gray-800">Address</h3>
-              <p className="text-gray-600 mt-1">Grace Unisex Saloon, Paras Downtown Square Mall, Zirakpur, Punjab</p>
+              <p className="text-gray-600 mt-1">Grace Unisex Salon, Paras Downtown Square Mall, Zirakpur, Punjab</p>
             </div>
             <div>
               <h3 className="text-xl font-semibold text-gray-800">Email</h3>

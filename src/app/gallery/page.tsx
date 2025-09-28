@@ -22,7 +22,7 @@ export default function GalleryPage() {
             <div key={index} className="overflow-hidden rounded-lg shadow-lg">
               <Image 
                 src={url} 
-                alt={`Saloon gallery image ${index + 1}`} 
+                alt={`Salon gallery image ${index + 1}`} 
                 width={500}
                 height={500}
                 className="w-full h-full object-cover aspect-square transition-transform duration-300 hover:scale-105"
