@@ -32,9 +32,12 @@ export default function Navbar() {
 
           {/* Hamburger Menu Button - Only shows on mobile */}
           <div className="md:hidden">
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+            <button 
+  onClick={() => setIsMenuOpen(!isMenuOpen)} 
+  className="text-emerald-600 hover:text-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-500" // Added styling
+>
+  {isMenuOpen ? <X size={28} /> : <Menu size={28} />} {/* Increased size for better visibility */}
+</button>
           </div>
 
           {/* Desktop Menu - Only shows on medium screens and up */}
